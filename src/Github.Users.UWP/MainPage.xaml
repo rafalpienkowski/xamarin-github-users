@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="Github.Users.UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Github.Users.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:Github.Users.Common.Models"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <DataTemplate 
+            x:Key="UserTemplate" 
+            x:DataType="models:User">
+            <StackPanel 
+                Orientation="Vertical" 
+                Margin="5">
+                <TextBlock 
+                    Text="{x:Bind Name}" 
+                    FontSize="16" 
+                    FontWeight="Bold">
+                </TextBlock>
+                <TextBlock 
+                    Text="{x:Bind Company.Name}" 
+                    FontSize="14">
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView 
+            ItemsSource="{x:Bind _usersViewModel.Users}"
+            ItemTemplate="{StaticResource UserTemplate}"
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        </ListView>
+    </Grid>
+</Page>
